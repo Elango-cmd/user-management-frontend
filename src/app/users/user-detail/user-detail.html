@@ -1,0 +1,33 @@
+<div class="container mt-5" *ngIf="user">
+  <h2>User Detail: {{ user.name }}</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <table class="table table-bordered mt-3">
+    <tbody>
+      <tr>
+        <th>ID</th>
+        <td>{{ user.id }}</td>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <td>{{ user.name }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <th>Created At</th>
+        <td>{{ user.createdAt | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-secondary mt-3" (click)="goBack()">Back</button>
+  <button class="btn btn-primary mt-3 ms-2" [routerLink]="['/users', user.id, 'edit']">Edit</button>
+</div>
+
+<div *ngIf="!user && !errorMessage" class="alert alert-info mt-5">
+  Loading user details...
+</div>
